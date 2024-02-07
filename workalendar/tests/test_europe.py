@@ -960,13 +960,19 @@ class IrelandTest(GenericCalendarTest):
         # self.assertNotIn(date(1974, 6, 3), holidays_1974) # Overlaps Jun Hol
         self.assertNotIn(date(1975, 5, 19), holidays_1975)  # No Whit Monday
 
+    def test_st_brigids_day(self):
+        holidays_2022 = self.cal.holidays_set(2022)
+        holidays_2023 = self.cal.holidays_set(2023)
+        self.assertNotIn(date(2022, 2, 7), holidays_2022)  # No St Brigid's Day
+        self.assertIn(date(2023, 2, 6), holidays_2023)     # St Brigid's Day
+
     def test_may_day(self):
         holidays_1993 = self.cal.holidays_set(1993)
         holidays_1994 = self.cal.holidays_set(1994)
         holidays_1995 = self.cal.holidays_set(1995)
         self.assertNotIn(date(1993, 5, 1), holidays_1993)  # No May Day
         self.assertIn(date(1994, 5, 2), holidays_1994)     # May Day
-        self.assertIn(date(1995, 5, 1), holidays_1995)
+        self.assertIn(date(1995, 5, 3), holidays_1995)
 
     def test_october_holiday(self):
         holidays_1976 = self.cal.holidays_set(1976)

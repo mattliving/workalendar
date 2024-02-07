@@ -12,6 +12,12 @@ class Ireland(WesternCalendar):
     boxing_day_label = "St. Stephen's Day"
     shift_new_years_day = True
 
+    def get_st_brigids_day(self, year):
+        return (
+            Ireland.get_nth_weekday_in_month(year, 2, MON),
+            "St Brigid's Day"
+        )
+
     def get_june_holiday(self, year):
         return (
             Ireland.get_nth_weekday_in_month(year, 6, MON),
@@ -27,6 +33,11 @@ class Ireland(WesternCalendar):
     def get_variable_days(self, year):
         self.include_whit_monday = (year <= 1973)
         days = super().get_variable_days(year)
+
+        # St Brigid's day
+        if year >= 2023:
+            days.append(self.get_st_brigids_day(year))
+
 
         # St Patrick's day
         st_patrick = date(year, 3, 17)
